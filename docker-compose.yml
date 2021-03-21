@@ -17,12 +17,13 @@ services:
           - node.platform.os == linux
           - node.role == manager
   web:
-    image: rylorin/siberiancms:latest
+    build:
+      context: ./
     depends_on:
       - mysql
     networks:
       - default
-      - portainer_agent_network
+#      - portainer_agent_network
     deploy:
       placement:
         constraints:
@@ -33,8 +34,8 @@ services:
 
 networks:
   default:
-  portainer_agent_network:
-    external: true
+#  portainer_agent_network:
+#    external: true
 
 volumes:
   db:
